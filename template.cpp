@@ -57,54 +57,8 @@ void settings() {
     cin.tie(0);
 }
 
-/*ll gcd(ll a, ll b) {
-	if (a == 0)
-		return b;
-	return gcd(b%a, a);
-}
-
-ll lcm(ll a, ll b) {
-	return a*b/gcd(a, b);
-}*/
-
 int main() {
-    int n, m;
-    ll k;
-    cin >> n >> m >> k;
-    vector<int> a(n);
-    cin >> a;
-    vector<int> b(m);
-    cin >> b;
-
-    int days = n*m, diff = 0;
-    vector<bool> isDiff(days, false);
-    for (int i = 1; i <= days; i++) {
-    	if ( a[( (i-1) % n)] != b[( (i-1) % m)]) {
-    		diff++;
-    		isDiff[i-1] = true;
-    	}
-    }
-
-    ll res = (k/diff)*days;
-    if (k % diff == 0) {
-    	for (int i = days-1; i >= 0; i--) {
-    		if (!isDiff[i])
-    			res--;
-    		else
-    			break;
-    	}
-    } else {
-    	int cnt = 0;
-	    int i = 0;
-	    while (cnt < k%diff) {
-	    	if (isDiff[i])
-	    		cnt++;
-	    	i++;
-	    }
-	    res+=i;
-    }
-    
-    cout << res << nL;
+    /* code */
 
 	return 0;
 }
