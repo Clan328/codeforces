@@ -58,8 +58,57 @@ void settings() {
     cin.tie(0);
 }
 
+int cnt;
+vl cntLoses;
+
+void add(int u, int v) {
+	if (cntLoses[min(u, v)] <= 0) {
+		cnt--;
+	}
+	cntLoses[min(u, v)]++;
+}
+
+void erase(int u, int v) {
+	cntLoses[min(u, v)]--;
+	if (cntLoses[min(u, v)] <= 0)
+		cnt++;
+}
+
 int main() {
-    /* code */
+    int n, m;
+    cin >> n >> m;
+
+    cnt = n;
+    cntLoses = vl(n);
+    while (m--) {
+    	int u, v;
+    	cin >> u >> v;
+    	u--;
+    	v--;
+    	add(u, v);
+    }
+
+    int q;
+    cin >> q;
+    while (q--) {
+    	int type;
+    	cin >> type;
+    	if (type == 1) {
+    		int u, v;
+	    	cin >> u >> v;
+	    	u--;
+	    	v--;
+	    	add(u, v);
+    	} else if (type == 2) {
+    		int u, v;
+	    	cin >> u >> v;
+	    	u--;
+	    	v--;
+    		erase(u, v);
+    	} else {
+    		cout << cnt << nL;
+    	}
+    }
 
 	return 0;
 }

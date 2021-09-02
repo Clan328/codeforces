@@ -27,11 +27,11 @@ void eval(bool condition) { cout << (condition ? "yes" : "no") << nL; }
 void Eval(bool condition) { cout << (condition ? "Yes" : "No") << nL; }
 void EVAL(bool condition) { cout << (condition ? "YES" : "NO") << nL; }
 
-int ipow(int a, int n) {
+ll ipow(ll a, ll n) {
     if (n == 0) return 1;
-    int x = ipow(a, n/2);
-    if (n % 2 == 0) return x*x;
-    return x*x*a;
+    ll x = ipow(a % MOD, (n/2) % MOD);
+    if (n % 2 == 0) return (x*x) % MOD;
+    return (x*x*a) % MOD;
 }
 
 template <typename T>
@@ -59,7 +59,16 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll n, k;
+    	cin >> n >> k;
+
+    	ll res = 1;
+    	for (int i = 0; i < k; i++) res = (res*n)%MOD;
+    	cout << res << nL;
+    }
 
 	return 0;
 }

@@ -59,7 +59,29 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	int maxI = -1;
+    	for (int i = 0; i < n; i++) {
+    		int a;
+    		cin >> a;
+    		if (a == 0)
+    			maxI = i;
+    	}
+
+    	for (int i = 0; i <= maxI; i++)
+    		cout << i+1 << " ";
+
+    	cout << n+1 << " ";
+
+		for (int i = maxI+1; i < n; i++)
+    		cout << i+1 << " ";
+
+    	cout << nL;
+    }
 
 	return 0;
 }

@@ -59,7 +59,48 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	ll l, r;
+    	cin >> n >> l >> r;
+
+    	vi a(n);
+    	cin >> a;
+
+    	sort(all(a));
+
+    	ll cnt = 0;
+
+    	for (int i = 0; i < n; i++) {
+    		int lo = 0, hi = i-1, mid, start = -1, end = -1;
+    		while (lo <= hi) {
+    			mid = (lo+hi)/2;
+    			if (a[i]+a[mid] >= l) {
+    				start = mid;
+    				hi = mid - 1;
+    			} else
+    				lo = mid + 1;
+    		}
+
+    		lo = 0, hi = i-1;
+    		while (lo <= hi) {
+    			mid = (lo+hi)/2;
+    			if (a[i]+a[mid] <= r) {
+    				end = mid;
+    				lo = mid + 1;
+    			} else
+    				hi = mid - 1;
+    		}
+
+    		//cout << "I: " << i << " Start: " << start << " End: " << end << nL;
+    		if (start != -1 && end != -1)
+    			cnt += (end-start+1);
+    	}
+
+    	cout << cnt << nL;
+    }
 
 	return 0;
 }

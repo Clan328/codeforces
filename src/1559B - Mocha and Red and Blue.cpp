@@ -59,7 +59,51 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+
+    	string s = "";
+    	char c;
+    	cin >> c;
+    	s += c;
+    	for (int i = 1; i < n; i++) {
+    		cin >> c;
+    		if (c != '?') {
+	    		s += c;
+	    	} else {
+	    		if (s[i-1] == 'R')
+	    			s += 'B';
+	    		else if (s[i-1] == 'B')
+	    			s += 'R';
+	    		else
+	    			s += '?';
+	    	}
+    	}
+
+    	// if (n > 1 && s[0] == '?') {
+    	// 	if (s[1] == 'R')
+    	// 		s[0] = 'B';
+    	// 	else
+    	// 		s[0] = 'R';
+    	// } else if (s[0] == '?')
+    	// 	s[0] = 'B';
+
+    	if (s[n-1] == '?')
+    		s[n-1] = 'B';
+    	for (int i = n-2; i >= 0; i--) {
+    		if (s[i] == '?') {
+    			if (s[i+1] == 'R')
+	    			s[i] = 'B';
+	    		else
+	    			s[i] = 'R';
+    		}
+    	}
+
+    	cout << s << nL;
+    }
 
 	return 0;
 }

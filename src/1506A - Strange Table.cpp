@@ -59,7 +59,20 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll n, m, x;
+    	cin >> n >> m >> x;
+    	x--;
+
+    	ll ty = x % n, tx = x / n;
+    	//cout << tx << " " << ty << nL;
+
+    	ll res = ty*m+tx;
+
+    	cout << res+1 << nL; 
+    }
 
 	return 0;
 }

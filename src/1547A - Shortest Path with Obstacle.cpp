@@ -59,7 +59,30 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int xa, ya;
+    	cin >> xa >> ya;
+    	int xb, yb;
+    	cin >> xb >> yb;
+    	int xc, yc;
+    	cin >> xc >> yc;
+
+    	if (xa == xb && xb == xc && yc > min(ya, yb) && yc < max(ya, yb))
+    		cout << abs(xa-xb)+abs(ya-yb)+2 << nL;
+    	else if (ya == yb && yb == yc && xc > min(xa, xb) && xc < max(xa, xb))
+    		cout << abs(xa-xb)+abs(ya-yb)+2 << nL;
+    	else
+			cout << abs(xa-xb)+abs(ya-yb) << nL;
+    	// if ((xa != xb && ya != yb) || 
+    	// 	//(xa == xb && ya == yb && ((xc > max(xa, xb) && xc < min(xa, xb))) && ((yc < min(ya, yb) && yc > max(ya, yb)))) ||
+    	// 	(ya == yb && ((xc > max(xa, xb) || xc < min(xa, xb)))) ||
+    	// 	(xa == xb && ((yc < min(ya, yb) || yc > max(ya, yb)))))
+    	// 	cout << abs(xa-xb)+abs(ya-yb) << nL;
+    	// else
+    	// 	cout << abs(xa-xb)+abs(ya-yb)+2 << nL;
+    }
 
 	return 0;
 }

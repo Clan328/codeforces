@@ -59,7 +59,30 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	map<ll, ll> cnt;
+    	for (int i = 0; i < n; i++) {
+    		ll temp;
+    		cin >> temp;
+    		cnt[temp]++;
+    	}
+
+    	ll maxValue = -1;
+    	for (auto const&[key, value] : cnt) {
+    		if (value > maxValue) {
+    			maxValue = value;
+    		}
+    	}
+
+    	if (maxValue > n/2)
+    		cout << maxValue-(n-maxValue) << nL;
+    	else
+    		cout << n % 2 << nL;
+    }
 
 	return 0;
 }

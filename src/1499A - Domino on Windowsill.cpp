@@ -1,4 +1,14 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <utility>
+#include <algorithm>
+#include <string>
+#include <queue>
+#include <deque>
+#include <cmath>
+#include <iomanip>
+#include <set>
+#include <numeric>
 
 using namespace std;
 
@@ -14,25 +24,14 @@ typedef vector<int> vi;
 typedef vector<vi> vvi;
 typedef pair<int, int> pii;
 typedef vector<pii> vpii;
-typedef vector<ll> vl;
-typedef vector<vl> vvl;
-typedef pair<ll, ll> pll;
-typedef vector<pll> vpll;
 
-const ll MOD = 1e9 + 7;
+const ll MOD = 10e9 + 7;
 
 void settings()__attribute__((constructor));
 
 void eval(bool condition) { cout << (condition ? "yes" : "no") << nL; }
 void Eval(bool condition) { cout << (condition ? "Yes" : "No") << nL; }
 void EVAL(bool condition) { cout << (condition ? "YES" : "NO") << nL; }
-
-int ipow(int a, int n) {
-    if (n == 0) return 1;
-    int x = ipow(a, n/2);
-    if (n % 2 == 0) return x*x;
-    return x*x*a;
-}
 
 template <typename T>
 ostream& operator<<(ostream& stream, const vector<T>& v) {
@@ -49,7 +48,7 @@ istream& operator>>(istream& stream, vector<T>& v){
 }
 
 void settings() {
-	#ifdef LOCAL
+	#ifndef ONLINE_JUDGE
 		freopen("io/input.txt", "r", stdin);
 		freopen("io/output.txt", "w", stdout);
 	#endif
@@ -59,7 +58,16 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	double n, k1, k2;
+    	cin >> n >> k1 >> k2;
+    	int w, b;
+    	cin >> w >> b;
+
+    	EVAL(( (w == 0) || (w > 0 && (k1+k2)>=(2*w)) ) && (b == 0 || (b > 0 && (2*n-(k1+k2))>=(2*b) )));
+    }
 
 	return 0;
 }

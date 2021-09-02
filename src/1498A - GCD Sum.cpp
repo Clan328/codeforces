@@ -58,8 +58,33 @@ void settings() {
     cin.tie(0);
 }
 
+ll check(ll mid) {
+	ll sum = 0, og = mid;
+	while (mid > 0) {
+		sum += mid % 10;
+		mid /= 10;
+	}
+	//cout << sum << nL;
+	return gcd(og, sum) > 1;
+}
+
+ll gcd(ll a, ll b) {
+	if (a == 0)
+		return b;
+	return gcd(b%a, b);
+}
+
 int main() {
-    /* code */
+	int t;
+	cin >> t;
+	while (t--) {
+	    ll n;
+	    cin >> n;
+
+	    ll res = check(n) ? n : (check(n+1) ? n+1 : n+2);
+
+	    cout << res << nL;
+	}
 
 	return 0;
 }

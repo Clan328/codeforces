@@ -59,7 +59,45 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vi arr(n);
+    	cin >> arr;
+
+    	int moves = 0, a = 0, b = 0;
+    	int lo = 0, hi = n-1;
+    	int prev = 0;
+    	bool isAlice = true;
+    	int curr = 0;
+    	while (lo <= hi) {
+    		curr = 0;
+    		if (isAlice) {
+    			while (lo <= hi && curr <= prev) {
+    				a += arr[lo];
+    				curr += arr[lo];
+    				lo++;
+    			}
+    			prev = curr;
+    		} else {
+    			while (lo <= hi && curr <= prev) {
+    				b += arr[hi];
+    				curr += arr[hi];
+    				hi--;
+    			}
+    			prev = curr;
+    		}
+    		isAlice = !isAlice;
+    		moves++;
+
+    		//cout << moves << " " << curr << nL;
+    	}
+
+    	cout << moves << " " << a << " " << b << nL;
+
+    }
 
 	return 0;
 }

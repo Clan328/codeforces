@@ -59,7 +59,24 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n, k;
+    	cin >> n >> k;
+    	string s;
+    	cin >> s;
+
+    	bool res = (k == 0);
+    	if (!res && n != 2*k) {
+    		res = true;
+    		for (int i = 0; i < k && res; i++) {
+    			res = (s[i] == s[n-i-1]);
+    		}
+    	}
+
+    	EVAL(res);
+    }
 
 	return 0;
 }

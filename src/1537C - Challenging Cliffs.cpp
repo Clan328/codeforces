@@ -59,7 +59,43 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vl h(n);
+    	cin >> h;
+
+    	sort(all(h));
+
+    	int diff = INT_MAX;
+    	int idx;
+
+    	for (int i = 0; i < n-1; i++) {
+    		if (h[i+1]-h[i] < diff) {
+    			diff = h[i+1]-h[i];
+    			idx = i;
+    		}
+    	}
+
+    	cout << h[idx];
+
+    	int after = 0;
+    	for (int i = 0; i < n; i++) {
+    		if (h[idx] > h[i])
+    			after++;
+    		else if (i != idx && i != idx+1)
+    			cout << " " << h[i];
+    	}
+
+    	for (int i = 0; i < after; i++) {
+    		if (i != idx && i != idx+1)
+    			cout << " " << h[i];
+    	}
+
+ 		cout << " " << h[idx+1] << nL;
+    }
 
 	return 0;
 }

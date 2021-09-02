@@ -59,7 +59,31 @@ void settings() {
 }
 
 int main() {
-    /* code */
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		vi a(n);
+		ll sum = 0;
+		for (int i = 0; i < n; i++) {
+			int temp;
+			cin >> temp;
+			sum += temp;
+			a[i] = temp;
+		}
+
+		ll cnt;
+		if (sum == n)
+			cnt = 0;
+		else if (sum < n) {
+			cnt = 1;
+		} else {
+			cnt = (sum-n);
+		}
+
+		cout << cnt << nL;
+	}
 
 	return 0;
 }

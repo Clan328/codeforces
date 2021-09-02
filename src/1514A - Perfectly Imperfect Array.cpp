@@ -49,7 +49,7 @@ istream& operator>>(istream& stream, vector<T>& v){
 }
 
 void settings() {
-	#ifdef LOCAL
+	#ifndef ONLINE_JUDGE
 		freopen("io/input.txt", "r", stdin);
 		freopen("io/output.txt", "w", stdout);
 	#endif
@@ -59,7 +59,38 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+
+    	vl a(n);
+    	cin >> a;
+
+    	bool res;
+    	for (int i = 0; i < n; i++) {
+    		res = (ld)sqrt(a[i]) != (ll)sqrt(a[i]);
+    		//cout << (ld)sqrt(a[i]) << " " << (ll)sqrt(a[i]) << nL;
+    		if (res)
+    			break;
+    	}
+
+    	/*for (int i = 0; i < n; i++) {
+    		product = 1;
+    		for (int j = i; j < n; j++) {
+    			product *= a[j];
+    			if ((ld)sqrt(product) != (ll)sqrt(product)) {
+    				res = false;
+    				//cout << t << " " << product << nL;
+    				break;
+    			}
+    		}
+    		if(!res) break;
+    	}*/
+
+    	EVAL(res);
+    }
 
 	return 0;
 }

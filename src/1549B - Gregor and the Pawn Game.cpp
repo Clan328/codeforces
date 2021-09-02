@@ -58,8 +58,44 @@ void settings() {
     cin.tie(0);
 }
 
+const int UNUSED = 0;
+const int OCCUPIED = 1;
+const int ATTACKING = 2;
+
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+
+    	vi opposite(n);
+    	for (int i = 0; i < n; i++) {
+    		char c;
+    		cin >> c;
+    		if (c == '1')
+    			opposite[i] = ATTACKING;
+    	}
+
+    	int res = 0;
+    	for (int i = 0; i < n; i++) {
+    		char c;
+    		cin >> c;
+    		if (c == '0') continue;
+    		if (i-1 >= 0 && opposite[i-1] == ATTACKING) {
+    			opposite[i-1] = OCCUPIED;
+    			res++;
+    		} else if (opposite[i] == UNUSED) {
+    			opposite[i] = OCCUPIED;
+    			res++;
+    		} else if (i+1 < n && opposite[i+1] == ATTACKING) {
+    			opposite[i+1] = OCCUPIED;
+    			res++;
+    		}
+    	}
+
+    	cout << res << nL;
+    }
 
 	return 0;
 }

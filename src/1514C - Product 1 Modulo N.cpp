@@ -59,7 +59,29 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    unsigned int n;
+    cin >> n;
+
+    ll prod = 1;
+    vi coprimes = {1};
+    for (unsigned int i = 2; i < n; i++) {
+    	if (__gcd(n, i) == 1) {
+    		prod = (prod*i)%n;
+    		coprimes.pb(i);
+    	}
+    }
+
+    int count = 0;
+    string res = "";
+    for (int i = 0; i < coprimes.size(); i++) {
+    	if (prod == 1 || coprimes[i]%n != prod) {
+    		count++;
+    		res += to_string(coprimes[i]) + " ";
+    	}
+    }
+
+    cout << count << nL;
+    cout << res << nL;
 
 	return 0;
 }

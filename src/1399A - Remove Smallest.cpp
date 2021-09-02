@@ -49,7 +49,7 @@ istream& operator>>(istream& stream, vector<T>& v){
 }
 
 void settings() {
-	#ifdef LOCAL
+	#ifndef ONLINE_JUDGE
 		freopen("io/input.txt", "r", stdin);
 		freopen("io/output.txt", "w", stdout);
 	#endif
@@ -59,7 +59,23 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vi a(n);
+    	cin >> a;
+
+    	sort(all(a));
+    	bool res = true;
+    	for (int i = 0; i < n-1; i++) {
+    		res = abs(a[i] - a[i+1]) <= 1;
+    		if (!res) break;
+    	}
+
+    	EVAL(res);
+    }
 
 	return 0;
 }

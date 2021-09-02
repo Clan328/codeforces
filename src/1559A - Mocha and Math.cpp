@@ -59,7 +59,21 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	ll a;
+    	cin >> a;
+    	for (int i = 1; i < n; i++) {
+    		ll b;
+    		cin >> b;
+    		a &= b;
+    	}
+
+    	cout << a << nL;
+    }
 
 	return 0;
 }

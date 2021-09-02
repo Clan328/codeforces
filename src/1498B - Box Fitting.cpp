@@ -19,7 +19,7 @@ typedef vector<vl> vvl;
 typedef pair<ll, ll> pll;
 typedef vector<pll> vpll;
 
-const ll MOD = 1e9 + 7;
+const ll MOD = 998244353;
 
 void settings()__attribute__((constructor));
 
@@ -59,7 +59,35 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while(t--) {
+    	int n;
+    	ll W;
+    	cin >> n >> W;
+    	vi w(20);
+    	for (int i = 0; i < n; i++) {
+    		int wi;
+    		cin >> wi;
+    		w[log2(wi)]++;
+    	}
+
+    	int cnt = 0, res = 0;
+    	while (cnt < n) {
+    		int curr = 0;
+    		for (int i = 19; i >= 0; i--) {
+    			if (w[i] && curr+(1<<i) <= W) {
+    				curr += (1<<i);
+    				cnt++;
+    				w[i]--;
+    				i++;
+    			}
+    		}
+    		res++;
+    	}
+
+    	cout << res << nL;
+    }
 
 	return 0;
 }

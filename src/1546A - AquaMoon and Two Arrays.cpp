@@ -59,7 +59,48 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vi a(n), b(n);
+    	cin >> a;
+    	cin >> b;
+
+    	bool isPos = true;
+    	vpii res;
+    	int lo = 0, hi = 0;
+    	while (a[lo] <= b[lo]) {
+    		lo++;
+    	}
+    	while (a[hi] >= b[hi]) {
+    		hi++;
+    	}
+
+    	while (lo < n && hi < n) {
+    		res.pb({lo+1, hi+1});
+    		a[lo]--;
+    		a[hi]++;
+    		while (a[lo] <= b[lo]) {
+	    		lo++;
+	    	}
+	    	while (a[hi] >= b[hi]) {
+	    		hi++;
+	    	}
+    	}
+
+    	for (int i = 0; i < n && isPos; i++) {
+    		isPos = (a[i] == b[i]);
+    	}
+
+    	if (isPos) {
+    		cout << res.size() << nL;
+    		for (int i = 0; i < res.size(); i++)
+    			cout << res[i].first << " " << res[i].second << nL;
+    	} else
+    		cout << -1 << nL;
+    }
 
 	return 0;
 }

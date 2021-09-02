@@ -59,7 +59,51 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n0, n1, n2;
+    	cin >> n0 >> n1 >> n2;
+
+    	if (n0) {
+    		for (int i = 0; i < n0+1; i++)
+    			cout << "0";
+    	}
+
+    	if (n2) {
+    		for (int i = 0; i < n2 + 1; i++)
+    			cout << "1";
+    		if (n0)
+    			n1--;
+    	}
+
+    	if (n1 > 0) {
+    		if (n2) {
+    			for (int i = 0; i < n1; i++) {
+					if (i % 2== 0)
+						cout << "0";
+					else
+						cout << "1";
+				}
+    		} else if (n0) {
+    			for (int i = 0; i < n1; i++) {
+					if (i % 2== 0)
+						cout << "1";
+					else
+						cout << "0";
+				}
+    		}else {
+    			for (int i = 0; i < n1+1; i++) {
+					if (i % 2== 0)
+						cout << "1";
+					else
+						cout << "0";
+				}
+    		}
+    	}
+
+    	cout << nL;
+    }
 
 	return 0;
 }

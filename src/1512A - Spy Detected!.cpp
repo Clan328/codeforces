@@ -1,4 +1,14 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <utility>
+#include <algorithm>
+#include <string>
+#include <queue>
+#include <deque>
+#include <cmath>
+#include <iomanip>
+#include <set>
+#include <numeric>
 
 using namespace std;
 
@@ -49,7 +59,7 @@ istream& operator>>(istream& stream, vector<T>& v){
 }
 
 void settings() {
-	#ifdef LOCAL
+	#ifndef ONLINE_JUDGE
 		freopen("io/input.txt", "r", stdin);
 		freopen("io/output.txt", "w", stdout);
 	#endif
@@ -59,7 +69,24 @@ void settings() {
 }
 
 int main() {
-    /* code */
+	int t;
+	cin >> t;
+
+	while(t--) {
+	    int n;
+	    cin >> n;
+	    vi a(n);
+	    cin >> a;
+
+	    vi v = a;
+	    sort(all(v));
+	    for (int i = 0; i < n; i++) {
+	    	if (a[i] != v[1]) {
+	    		cout << i+1 << nL;
+	    		break;
+	    	}
+	    }
+	}
 
 	return 0;
 }

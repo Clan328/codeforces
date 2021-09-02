@@ -36,30 +36,55 @@ int ipow(int a, int n) {
 
 template <typename T>
 ostream& operator<<(ostream& stream, const vector<T>& v) {
-	for (auto elem : v) 
-		stream << elem << " ";
-	return stream;
+    for (auto elem : v) 
+        stream << elem << " ";
+    return stream;
 }
 
 template <typename T>
 istream& operator>>(istream& stream, vector<T>& v){
     for(auto &elem : v)
-    	stream >> elem;
+        stream >> elem;
     return stream;
 }
 
 void settings() {
-	#ifdef LOCAL
-		freopen("io/input.txt", "r", stdin);
-		freopen("io/output.txt", "w", stdout);
-	#endif
+    #ifdef LOCAL
+        freopen("io/input.txt", "r", stdin);
+        freopen("io/output.txt", "w", stdout);
+    #endif
 
-	ios::sync_with_stdio(0);
+    ios::sync_with_stdio(0);
     cin.tie(0);
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        vi sum(m);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                char c;
+                cin >> c;
+                sum[j] += (int)c;
+            }
+        }
 
-	return 0;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < m; j++) {
+                char c;
+                cin >> c;
+                sum[j] -= (int)c;
+            }
+        }
+
+        for (int i = 0; i < m; i++)
+            cout << (char)sum[i];
+        cout << endl;
+    }
+
+    return 0;
 }

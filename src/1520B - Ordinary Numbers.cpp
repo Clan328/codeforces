@@ -58,8 +58,44 @@ void settings() {
     cin.tie(0);
 }
 
+ll howMany(ll n) {
+	if (n < 10)
+		return n;
+
+	ll temp = n;
+	int digits = 0;
+	bool isPerfect = true;
+	int prev = temp % 10;
+	while (temp != 0) {
+		digits++;
+		if (isPerfect)
+			isPerfect = (prev == temp % 10);
+		if (temp != 0)
+			prev = temp % 10;
+		temp /= 10;
+	}
+
+	//cout << " " << prev-1 << " " << isPerfect << nL;
+
+	string s = "";
+	string p = to_string(prev);
+	for (int i = 0; i < digits; i++)
+		s += p;
+
+	int in = stoi(s);
+
+	return (prev-(n<in)) + howMany(ipow(10, digits-1)-1);
+}
+
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll n;
+    	cin >> n;
+
+    	cout << howMany(n) << nL;
+    }
 
 	return 0;
 }

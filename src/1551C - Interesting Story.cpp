@@ -59,7 +59,49 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vvi abc(n, vi(6));
+    	for (int i = 0; i < n; i++) {
+    		string s;
+    		cin >> s;
+    		for (int j = 0; j < s.size(); j++) {
+    			abc[i][s[j]-97]++;
+    			abc[i][5]++;
+    		}
+    	}
+
+    	int res = 0;
+    	for (int i = 0; i < 5; i++) {
+    		int temp = 0, letters = 0, others = 0;
+    		vector<pair<int, pii>> next;
+    		for (int j = 0; j < n; j++)
+    			next.pb({abc[j][i]-(abc[j][5]-abc[j][i]), {abc[j][i], abc[j][5]-abc[j][i]}});
+    		
+    		sort(all(next));
+
+    		// for (int j = 0; j < next.size(); j++) {
+    		// 	cout << next[j].second.first << " " << next[j].second.second << nL;
+    		// }
+
+    		int j = next.size()-1;
+    		pii curr = next[j].second;
+    		while (j >= 0 && letters+curr.first > others+curr.second) {
+    			temp++;
+    			letters+=curr.first;
+    			others+=curr.second;
+    			j--;
+    			curr = next[j].second;
+    		}
+    		
+    		res = max(res, temp);
+    	}
+
+    	cout << res << nL;
+    }
 
 	return 0;
 }

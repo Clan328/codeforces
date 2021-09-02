@@ -59,7 +59,30 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vi a(n);
+    	cin >> a;
+
+    	int res = 0;
+    	bool isSorted = true;
+    	for (int i = 0; i < n && isSorted; i++) {
+    		isSorted = a[i] == i+1;
+    	}
+    	if (!isSorted) {
+	    	if (a[0] == 1 || a[n-1] == n)
+	    		res = 1;
+            else if (a[0] == n && a[n-1] == 1)
+                res = 3;
+	    	else
+	    		res = 2;
+	    }
+
+    	cout << res << nL;
+    }
 
 	return 0;
 }

@@ -59,7 +59,18 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vi a(2*n);
+    	cin >> a;
+    	sort(all(a));
+    	for (int i = 0; i < n; i++)
+    		cout << a[i] << " " << a[i+n] << " ";
+    	cout << nL;
+    }
 
 	return 0;
 }

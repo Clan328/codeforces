@@ -59,7 +59,25 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll a, b, c;
+    	cin >> a >> b >> c;
+
+    	if (a > b) swap(a, b);
+
+    	ll total = (b-a);
+
+    	if (c <= total*2 && a <= total*2 && b <= total*2) {
+    		if (c <= total)
+    			cout << c+total << nL;
+    		else
+    			cout << c-total << nL;
+    	}
+    	else
+    		cout << -1 << nL;
+    }
 
 	return 0;
 }

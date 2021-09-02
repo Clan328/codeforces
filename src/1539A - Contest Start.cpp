@@ -59,7 +59,21 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int k;
+    cin >> k;
+    while (k--) {
+    	ll n, x, t;
+    	cin >> n >> x >> t;
+
+    	//ll res = ((t/x<n)?t/x:n-1)*(n-2)+1;
+    	ll res;
+    	if (t/x+(t%x==0)>=n)
+    		res = (n*(n-1))/2;
+    	else
+    		res = (t/x*(n-t/x))+(t/x*(t/x-1)/2);
+
+    	cout << res << nL;
+    }
 
 	return 0;
 }

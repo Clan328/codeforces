@@ -59,7 +59,19 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll n;
+    	cin >> n;
+    	
+    	if (n % 3 == 0)
+    		cout << n/3 << " " << n/3 << nL;
+    	else if (n % 3 == 1)
+    		cout << n/3+1 << " " << n/3 << nL;
+    	else
+    		cout << n/3 << " " << n/3+1 << nL;
+    }
 
 	return 0;
 }

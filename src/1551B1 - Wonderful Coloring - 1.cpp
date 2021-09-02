@@ -59,7 +59,24 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int abc[27];
+    	memset(abc, 0, sizeof(abc));
+    	string s;
+    	cin >> s;
+    	int n = s.size();
+    	int total = 0;
+    	for (int i = 0; i < n; i++) {
+    		int idx = s[i]-97;
+    		abc[idx]++;
+    		if (abc[idx] <= 2)
+    			total++;
+    	}
+
+    	cout << total/2 << nL;
+    }
 
 	return 0;
 }

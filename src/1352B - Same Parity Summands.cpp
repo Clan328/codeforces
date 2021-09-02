@@ -59,7 +59,44 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll n;
+    	int k;
+    	cin >> n >> k;
+
+    	if (n%2 == 0) {
+    		if (k%2 == 1) {
+    			// Even
+    			if ((n-2*(k-1))%2==0 && (n-2*(k-1)) > 0) {
+    				cout << "YES" << nL;
+    				for (int i = 0; i < k-1; i++) cout << "2 ";
+    				cout << (n-2*(k-1)) << nL;
+    			} else
+    				cout << "NO" << nL;
+    		} else {
+    			if ((n-k+1)%2==1 && (n-k+1) > 0) {
+    				cout << "YES" << nL;
+    				for (int i = 0; i < k-1; i++) cout << "1 ";
+    				cout << (n-k+1) << nL;
+    			} else if ((n-2*(k-1))%2==0 && (n-2*(k-1)) > 0) {
+    				cout << "YES" << nL;
+    				for (int i = 0; i < k-1; i++) cout << "2 ";
+    				cout << (n-2*(k-1)) << nL;
+    			} else
+    				cout << "NO" << nL;
+    		}
+    	} else {
+    		// Odd
+    		if ((n-k+1)%2==1 && (n-k+1) > 0) {
+    			cout << "YES" << nL;
+				for (int i = 0; i < k-1; i++) cout << "1 ";
+				cout << (n-k+1) << nL;
+    		} else
+    			cout << "NO" << nL;
+    	}
+    }
 
 	return 0;
 }

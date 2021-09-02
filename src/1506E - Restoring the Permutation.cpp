@@ -59,7 +59,53 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	set<int> a;
+    	for (int i = 1; i <= n; i++)
+    		a.insert(i);
+    	vi p(n);
+    	int prev, curr;
+    	for (int i = 0; i < n; i++) {
+    		cin >> curr;
+    		if (i == 0 || (i > 0 && curr != prev)) {
+    			p[i] = curr;
+    			a.erase(curr);
+    		}
+    		prev = curr;
+    	}
+
+    	int start = 1;
+    	set<int>::iterator it;
+    	it = a.begin();
+    	for (int i = 0; i < n; i++) {
+    		if (p[i] > 0)
+    			cout << p[i] << " ";
+    		else {
+    			cout << *it << " ";
+    			it++;
+    		}
+    	}
+    	cout << nL;
+
+    	it = a.begin();
+    	for (int i = 0; i < n; i++) {
+    		if (p[i] > 0) {
+    			cout << p[i] << " ";
+    			prev = p[i];
+    		}
+    		else {
+    			it = a.upper_bound(prev);
+    			it--;
+    			cout << *it << " ";
+    			a.erase(it);
+    		} 
+    	}
+    	cout << nL;
+    }
 
 	return 0;
 }

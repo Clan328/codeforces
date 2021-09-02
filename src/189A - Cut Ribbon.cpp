@@ -59,7 +59,22 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int n, a, b, c;
+    cin >> n >> a >> b >> c;
+
+    int res = 0;
+    for (int i = 0; i <= 4000; i++) {
+    	for (int j = 0; j <= 4000; j++) {
+    		double k = -(a*i+b*j-n)/(double)c;
+    		bool isValid = k >= 0 && k == (int)k;
+    		if (isValid) {
+    			res = max(res, i+j+(int)k);
+    			//cout << i << " " << j << " " << k << nL;
+    		}
+    	}
+    }
+
+    cout << res << nL;
 
 	return 0;
 }

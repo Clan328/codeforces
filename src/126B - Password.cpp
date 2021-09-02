@@ -36,30 +36,65 @@ int ipow(int a, int n) {
 
 template <typename T>
 ostream& operator<<(ostream& stream, const vector<T>& v) {
-	for (auto elem : v) 
-		stream << elem << " ";
-	return stream;
+    for (auto elem : v) 
+        stream << elem << " ";
+    return stream;
 }
 
 template <typename T>
 istream& operator>>(istream& stream, vector<T>& v){
     for(auto &elem : v)
-    	stream >> elem;
+        stream >> elem;
     return stream;
 }
 
 void settings() {
-	#ifdef LOCAL
-		freopen("io/input.txt", "r", stdin);
-		freopen("io/output.txt", "w", stdout);
-	#endif
+    #ifdef LOCAL
+        freopen("io/input.txt", "r", stdin);
+        freopen("io/output.txt", "w", stdout);
+    #endif
 
-	ios::sync_with_stdio(0);
+    ios::sync_with_stdio(0);
     cin.tie(0);
 }
 
-int main() {
-    /* code */
+vi z(string s) {
+    int n = s.size();
+    vi z(n);
+    int x = 0, y = 0;
+    for (int i = 1; i < n; i++) {
+        z[i] = max(0,min(z[i-x],y-i+1));
+        while (i+z[i] < n && s[z[i]] == s[i+z[i]]) {
+           x = i;
+           y = i+z[i];
+           z[i]++;
+       }
+    }
+    return z;
+}
 
-	return 0;
+int main() {
+    string s;
+    cin >> s;
+    int n = s.size();
+
+    vi zArr = z(s);
+
+    int res = 0, maxLen = 0, maxZ = zArr[1];
+    for (int i = 2; i < n; i++) {
+        if (zArr[i] > maxLen && i+zArr[i] >= n) {
+            if (maxZ >= zArr[i]) {
+                maxLen = zArr[i];
+                res = i;
+            }
+        }
+        maxZ = max(maxZ, zArr[i]);
+    }
+
+    if (res != 0)
+        cout << s.substr(res) << nL;
+    else
+        cout << "Just a legend" << nL;
+
+    return 0;
 }

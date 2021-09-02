@@ -59,7 +59,39 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n, p, k;
+    	cin >> n >> p >> k;
+
+    	string temp;
+    	cin >> temp;
+
+    	vi a(n);
+    	for (int i = 0; i < n; i++) {
+    		a[i] = (temp[i] == '1');
+    	}
+
+    	int x, y;
+    	cin >> x >> y;
+
+    	int dp[n+1];
+    	
+    	for (int i = n; i > 0; i--) {
+    		if (i+k <= n)
+    			dp[i] = dp[i+k] + (1-a[i-1]);
+    		else
+    			dp[i] = (1-a[i-1]);
+    	} 
+
+    	int cnt = INT_MAX;
+    	for (int i = p; i <= n; i++) {
+    		cnt = min(cnt, (dp[i]*x)+((i-p)*y));
+    	}
+
+    	cout << cnt << nL;
+    }
 
 	return 0;
 }

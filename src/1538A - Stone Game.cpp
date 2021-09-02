@@ -59,7 +59,33 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	int minI = 0, maxI = 0;
+    	vi a;
+    	for (int i = 0; i < n; i++) {
+    		int temp;
+    		cin >> temp;
+    		a.pb(temp);
+    		if (temp < a[minI])
+    			minI = i;
+    		else if (temp > a[maxI])
+    			maxI = i;
+    	}
+
+    	int first = min(minI, maxI), second = max(minI, maxI);
+    	
+    	ll cnt = min(second+1, 
+    		min(n-first, 
+    			first+1 + n-second
+    		)
+    	);
+
+    	cout << cnt << nL;
+    }
 
 	return 0;
 }

@@ -49,7 +49,7 @@ istream& operator>>(istream& stream, vector<T>& v){
 }
 
 void settings() {
-	#ifdef LOCAL
+	#ifndef ONLINE_JUDGE
 		freopen("io/input.txt", "r", stdin);
 		freopen("io/output.txt", "w", stdout);
 	#endif
@@ -58,8 +58,58 @@ void settings() {
     cin.tie(0);
 }
 
+struct Point {
+	int x, y;
+};
+
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+
+    while (t--) {
+    	int n;
+    	cin >> n;
+
+    	Point p1 = {-1, -1}, p2 = {-1, -1};
+    	vector<string> mat(n);
+    	for (int i = 0; i < n; i++) {
+    		for (int j = 0; j < n; j++) {
+    			char in;
+    			cin >> in;
+    			mat[i] += in;
+    			if (in == '*') {
+	    			if (p1.x == -1)
+	    				p1 = {i, j};
+	    			else
+	    				p2 = {i, j};
+    			}
+    		}
+    	}
+
+    	if (p1.x == p2.x) {
+    		if (p1.x > 0) {
+    			mat[0][p2.y] = '*';
+    			mat[0][p1.y] = '*';
+    		} else {
+				mat[1][p2.y] = '*';
+    			mat[1][p1.y] = '*';
+    		}
+    	} else if (p1.y == p2.y) {
+			if (p1.y > 0) {
+    			mat[p1.x][0] = '*';
+    			mat[p2.x][0] = '*';
+    		} else {
+				mat[p2.x][1] = '*';
+    			mat[p1.x][1] = '*';
+    		}
+    	} else {
+    		mat[p1.x][p2.y] = '*';
+    		mat[p2.x][p1.y] = '*';
+    	}
+
+    	for (int i = 0; i < n; i++)
+    		cout << mat[i] << nL;
+    }
 
 	return 0;
 }

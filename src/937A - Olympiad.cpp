@@ -59,7 +59,18 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int n;
+    cin >> n;
+    vi a(n);
+    cin >> a;
+
+    sort(all(a));
+
+    int cnt = (a[0] != 0);
+    for (int i = 1; i < n; i++)
+    	cnt += (a[i] != 0 && a[i] != a[i-1]);
+
+    cout << cnt << nL;
 
 	return 0;
 }

@@ -59,7 +59,32 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	map<ll, ll> cnt;
+    	for (int i = 0; i < n; i++) {
+    		int a;
+    		cin >> a;
+    		cnt[a]++;
+    	}
+
+    	ll res = LLONG_MAX;
+    	map<int, bool> visited;
+    	for (auto const& [curr, C] : cnt) {
+    		if (visited[C]) continue;
+    		visited[C] = true;
+    		ll temp = 0;
+		    for (auto const& [key, val] : cnt) {
+		    	temp += min((val>=C? val-C : LLONG_MAX), val);
+			}
+			res = min(res, temp);
+		}
+
+		cout << res << nL;
+    }
 
 	return 0;
 }

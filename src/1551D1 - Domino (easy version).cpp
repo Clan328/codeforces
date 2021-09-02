@@ -59,7 +59,22 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n, m, k;
+    	cin >> n >> m >> k;
+    	
+    	bool res = false;
+    	if (n%2 == 0 && m%2 == 0 && k%2 == 0)
+    		res = true;
+    	else if (n % 2 == 0 && k%2 == 0 && k <= n*(m-1)/2)
+    		res = true;
+    	else if (m % 2 == 0 && k >= m/2 && n*m/2%2==k%2)
+    		res = true;
+ 		
+    	EVAL(res);
+    }
 
 	return 0;
 }

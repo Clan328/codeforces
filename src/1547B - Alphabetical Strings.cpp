@@ -59,7 +59,61 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	string s;
+    	cin >> s;
+
+    	bool res = true;
+
+    	string so = s;
+    	sort(all(so));
+    	vi abc(27);
+    	for (int i = 0; i < s.size() && res; i++) {
+    		if (abc[s[i]-97] == 0) abc[s[i]-97]++;
+    		else res = false;
+    	}
+
+    	if (res) {
+    		bool ended = false;
+    		for (int i = 0; i < 27 && res; i++) {
+    			if (!ended && abc[i] == 0) ended = true;
+    			if (ended && abc[i] == 1) res = false;
+    		}
+
+    		if (res) {
+    			int n = s.size();
+    			int lo, hi;
+    			for (int i = 0; i < n; i++) {
+    				if (s[i] == 'a') {
+    					lo = i;
+    					hi = i;
+    					break;
+    				}
+    			}
+    			int curr = 0;
+    			//cout << (lo >= 0 && s[lo]-97 == curr) << nL;
+    			while (res && curr < n && (lo >= 0 || hi < n)) {
+    				if (lo >= 0 && s[lo]-97 == curr) {
+    					curr++;
+    					if (lo == hi)
+    						hi++;
+    					lo--;
+    					//cout << lo << nL;
+    				} else if (hi < n && s[hi]-97 == curr) {
+    					curr++;
+    					if (hi == lo)
+    						lo--;
+    					hi++;
+    				} else
+    					res = false;
+    			}
+    		}
+    	}
+
+    	EVAL(res);
+    }
 
 	return 0;
 }

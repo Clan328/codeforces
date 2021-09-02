@@ -59,7 +59,36 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vl a(n);
+    	int minIdx = 0;
+    	for (int i = 0; i < n; i++) {
+    		cin >> a[i];
+    		if (a[i] < a[minIdx])
+    			minIdx = i;
+    	}
+
+    	cout << n-1 << nL;
+
+    	ll minN = a[minIdx];
+    	ll skip = minIdx;
+    	for (int i = 0; i < n; i++) {
+    		if (i == skip) continue;
+    		if (i == 0) {
+    			cout << i+1 << " " << minIdx+1 << " " << minN << " " << (minN+minIdx) << nL;
+    			minIdx = 0;
+    		}
+    		else
+    			cout << minIdx+1 << " " << i+1 << " " << minN << " " << (minN +i) << nL;
+    	}
+
+    	// for (int i = 0; i < n; i++)
+    	// 	cout << a[i].first << " " << a[i].second << nL;
+    }
 
 	return 0;
 }

@@ -8,7 +8,7 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 
-typedef long long ll;
+typedef unsigned long long ll;
 typedef long double ld;
 typedef vector<int> vi;
 typedef vector<vi> vvi;
@@ -58,8 +58,40 @@ void settings() {
     cin.tie(0);
 }
 
+ll operation(ll x, ll y) {
+	ll res = 0;
+	ll i = 0;
+	while ((x>>i) != 0) {
+		if ( ((x>>i) & 1) && !((y>>i)&1) ) {
+			res += (1<<i);
+		}
+		i++;
+	}
+	return res;
+}
+
 int main() {
-    /* code */
+    ll t;
+    cin >> t;
+
+    while (t--) {
+    	ll n;
+    	cin >> n;
+    	vl x(n);
+    	cin >> x;
+
+    	vl y(n);
+    	for (ll i = 1; i < n; i++) {
+    		if ( (x[i-1]&x[i]) == x[i-1])
+    			y[i] = 0;
+    		else {
+    			y[i] = operation(x[i-1], x[i]);
+    			x[i] = x[i]^y[i];
+    		}
+    	}
+
+    	cout << y << nL;
+    }
 
 	return 0;
 }

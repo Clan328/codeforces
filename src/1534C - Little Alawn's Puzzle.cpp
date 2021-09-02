@@ -58,8 +58,51 @@ void settings() {
     cin.tie(0);
 }
 
+vi p;
+
+int findSet(int i) {
+    if(p[i] != i) p[i] = findSet(p[i]);
+    return p[i];
+}
+
+void unionSet(int u, int v) {
+    p[findSet(u)] = findSet(v);
+}
+
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+
+    	vpii s(n);
+    	p = vi(n);
+    	for (int i = 0; i < n; i++) {
+    		p[i] = i;
+    		cin >> s[i].first;
+    	}
+
+    	for (int i = 0; i < n; i++) {
+    		cin >> s[i].second;
+    		unionSet(s[i].first-1, s[i].second-1);
+    		//cout << p << nL;
+    	}
+
+    	map<int, int> m;
+    	for (int i = 0; i < n; i++) {
+    		m[findSet(i)]++;
+    	}
+
+    	//cout << p << nL;
+
+    	ll cnt = 0;
+    	for (auto const& [key, val] : m) {
+    		cnt = (cnt+1);
+    	}
+
+    	cout << (1LL<<cnt) << nL;
+    }
 
 	return 0;
 }

@@ -59,7 +59,44 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int k, n, m;
+    	cin >> k >> n >> m;
+    	vi a(n);
+    	cin >> a;
+    	vi b(m);
+    	cin >> b;
+
+    	int idxA = 0, idxB = 0, lines = k;
+    	vi res;
+    	bool isPos = true;
+    	while (isPos && (idxA < n || idxB < m)) {
+    		if (idxA < n && a[idxA] == 0) {
+    			lines++;
+   				res.pb(a[idxA]);
+    			idxA++;
+    		} else if (idxA < n && a[idxA] <= lines) {
+   				res.pb(a[idxA]);
+    			idxA++;
+    		} else if (idxB < m && b[idxB] == 0) {
+    			lines++;
+   				res.pb(b[idxB]);
+    			idxB++;
+    		} else if (idxB < m && b[idxB] <= lines) {
+   				res.pb(b[idxB]);
+    			idxB++;
+    		} else {
+    			isPos = false;
+    		}
+    	}
+
+    	if (isPos)
+    		cout << res << nL;
+    	else
+    		cout << -1 << nL;
+    }
 
 	return 0;
 }

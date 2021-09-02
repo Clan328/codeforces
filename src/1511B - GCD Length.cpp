@@ -27,9 +27,9 @@ void eval(bool condition) { cout << (condition ? "yes" : "no") << nL; }
 void Eval(bool condition) { cout << (condition ? "Yes" : "No") << nL; }
 void EVAL(bool condition) { cout << (condition ? "YES" : "NO") << nL; }
 
-int ipow(int a, int n) {
+ll ipow(ll a, ll n) {
     if (n == 0) return 1;
-    int x = ipow(a, n/2);
+    ll x = ipow(a, n/2);
     if (n % 2 == 0) return x*x;
     return x*x*a;
 }
@@ -59,7 +59,23 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int a, b, c;
+    	cin >> a >> b >> c;
+
+    	ll x = ipow(10, a-1);
+    	string y = "1";
+    	for (int i = 0; i < b-c; i++) {
+    		y += "1";
+    	}
+    	for (int i = 0; i < c-1; i++) {
+    		y += "0";
+    	}
+
+    	cout << x << " " << y << nL;
+    }
 
 	return 0;
 }

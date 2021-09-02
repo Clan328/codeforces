@@ -59,7 +59,22 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    string a, b;
+    cin >> a >> b;
+
+    bool res = a.size() == b.size();
+
+    if (res) {
+    	bool isZerosA = true, isZerosB = true;
+    	for (int i = 0; i < a.size(); i++) {
+    		isZerosA = isZerosA && a[i] == '0';
+    		isZerosB = isZerosB && b[i] == '0';
+    	}
+
+    	res = isZerosA == isZerosB;
+    }
+
+    EVAL(res);
 
 	return 0;
 }

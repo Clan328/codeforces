@@ -59,7 +59,37 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	string s;
+    	cin >> s;
+
+    	int cntT = 0, cntM = 0;
+    	bool res = true;
+    	for (int i = 0; i < n && res; i++) {
+    		if (s[i] == 'T') cntT++;
+    		else {
+    			cntM++;
+    			res = (cntT >= cntM);
+    		}
+    	}
+
+    	if (res && cntM*2==cntT) {
+    		cntT = 0, cntM = 0;
+	    	for (int i = n-1; i >= 0 && res; i--) {
+	    		if (s[i] == 'T') cntT++;
+	    		else {
+	    			cntM++;
+	    			res = (cntT >= cntM);
+	    		}
+	    	}
+    	}
+
+    	EVAL(res && cntM*2==cntT);
+    }
 
 	return 0;
 }

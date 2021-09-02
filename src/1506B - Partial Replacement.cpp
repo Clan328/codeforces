@@ -59,7 +59,52 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n, k;
+    	cin >> n >> k;
+    	string s = "";
+    	int idx = 0;
+    	int flag = 0, first = 0, last = 0;
+    	for (int i = 0; i < n; i++) {
+    		char c;
+    		cin >> c;
+    		s += c;
+    		if (c == '*') {
+    			if (flag == 0) {
+    				idx = 0;
+    				first = i;
+    				flag = 1;
+    			} else if (flag == 1)
+    				flag = 2;
+    			else
+    				last = i;
+    			idx = 0; 
+    		}
+    		idx++;
+    	}
+
+    	if (flag == 0)
+    		cout << 0 << nL;
+    	else if (flag == 1)
+    		cout << 1 << nL;
+    	else {
+    		if (last-first > k) {
+    			int i = first, res = 2;
+    			while (i < n && i < last) {
+    				int next = (i+k < n)? i+k : n-1;
+    				while (s[next] != '*') {
+    					next--;
+    				}
+    				i = next;
+    				res++;
+    			}
+    			cout << res-1 << nL;
+    		} else
+    			cout << 2 << nL;
+    	}
+    }
 
 	return 0;
 }

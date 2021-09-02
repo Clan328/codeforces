@@ -58,8 +58,73 @@ void settings() {
     cin.tie(0);
 }
 
+vi z(string s) {
+    int n = s.size();
+    vi z(n);
+    int x = 0, y = 0;
+    for (int i = 1; i < n; i++) {
+        z[i] = max(0,min(z[i-x],y-i+1));
+        while (i+z[i] < n && s[z[i]] == s[i+z[i]]) {
+           x = i;
+           y = i+z[i];
+           z[i]++;
+       }
+    }
+    return z;
+}
+
 int main() {
-    /* code */
+    int q;
+    cin >> q;
+    while (q--) {
+    	string s, t;
+    	cin >> s >> t;
+
+    	bool res = false;
+
+    	// 1. Only right
+    	vi zRight = z(t+"#"+s);
+    	for (int i = t.size()+1; i < zRight.size() && !res; i++) {
+    		res = (zRight[i] == t.size());
+    	}
+
+    	// cout << t+" # "+s << nL;
+    	// cout << zRight << nL;
+
+    	// 2. Only left
+    	vi zLeft;
+    	if (!res) {
+    		string tmp = t;
+	    	reverse(all(tmp));
+
+	    	// cout << tmp + " # " + s << nL;
+	    	
+	    	zLeft = z(tmp+"#"+s);
+	    	for (int i = t.size()+1; i < zLeft.size() && !res; i++) {
+	    		res = (zLeft[i] == t.size());
+	    	}
+    	}
+
+    	// cout << zLeft << nL;
+
+    	// 3. Both
+    	if (!res) {
+    		for (int i = t.size()+1; i < zRight.size() && !res; i++) {
+    			int r = zRight[i];
+
+    			int l;
+    			for (int j = r; j > 0 && !res; j--) {
+    				l = zLeft[i+j-1-(t.size()-j)];
+	    		
+	    			res = (j+l >= t.size());
+    			}
+	    		// if (i == 6)
+	    		// 	cout << r << nL;
+	    	}
+    	}
+
+    	EVAL(res);
+    }
 
 	return 0;
 }

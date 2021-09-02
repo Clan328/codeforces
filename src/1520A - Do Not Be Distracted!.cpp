@@ -59,7 +59,30 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+	    int n; 
+	    cin >> n;
+
+	 	int abc[26];
+	 	memset(abc, 0, sizeof(abc));
+
+	 	bool res = true;
+	 	char prev = '-';
+	 	for (int i = 0; i < n; i++) {
+	 		char c;
+	 		cin >> c;
+	 		if (!abc[c-65])
+	 			abc[c-65] = 1;
+	 		else if (prev != c) {
+	 			res = false;
+	 		}
+	 		prev = c;
+	 	}
+
+	 	EVAL(res);
+	}
 
 	return 0;
 }

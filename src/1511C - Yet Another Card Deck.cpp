@@ -59,7 +59,30 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int n, q;
+    cin >> n >> q;
+    vi a(n);
+    cin >> a;
+    while (q--) {
+    	int t;
+    	cin >> t;
+
+    	int pos = -1, next = a[0], curr;
+    	for (int i = 0; i < n && pos == -1; i++) {
+    		if (next == t) {
+    			pos = i+1;
+    			break;
+    		}
+    		curr = next;
+    		next = a[i+1];
+    		a[i+1] = curr;
+    	}
+    	a[0] = next;
+
+    	cout << pos << " ";
+    }
+
+    cout << nL;
 
 	return 0;
 }

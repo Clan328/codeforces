@@ -58,8 +58,47 @@ void settings() {
     cin.tie(0);
 }
 
+bool check(string b) {
+	int open = 0;
+	if (count(all(b), '(') > count(all(b), ')')) {
+		replace(all(b), 'A', ')');
+		replace(all(b), 'B', ')');
+		replace(all(b), 'C', ')');
+	} else {
+		replace(all(b), 'A', '(');
+		replace(all(b), 'B', '(');
+		replace(all(b), 'C', '(');
+	}
+	//cout << b << nL;
+	for (int i = 0; i < b.length(); i++) {
+		if (b[i] == '(')
+			open++;
+		else if (b[i] == ')')
+			open--;
+
+		if (open < 0)
+			return false;
+	}
+	return open == 0;
+}
+
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	string a, b;
+    	cin >> a;
+
+    	bool res = a[0] != a[a.length()-1];
+    	if (res) {
+    		b = a;
+    		replace(all(b), a[0], '(');
+    		replace(all(b), a[a.length()-1], ')');
+    		//cout << b << nL;
+    		res = check(b);
+    	}
+    	EVAL(res);
+    }
 
 	return 0;
 }

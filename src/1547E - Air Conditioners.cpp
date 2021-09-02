@@ -59,7 +59,49 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    ll q;
+    cin >> q;
+    while (q--) {
+    	ll n, k;
+    	cin >> n >> k;
+    	vpll t(k);
+    	for (int i = 0; i < k; i++) {
+    		ll temp;
+    		cin >> temp;
+    		t[i].first = temp;
+    	}
+    	for (int i = 0; i < k; i++) {
+    		ll temp;
+    		cin >> temp;
+    		t[i].second = temp;
+    	}
+
+    	sort(all(t));
+
+    	vl L(n);
+    	ll prev = INT_MAX, idx = 0;
+    	for (int i = 0; i < n; i++) {
+    		if (idx < k && t[idx].first == i+1) {
+    			prev = min(prev+1, t[idx].second);
+    			idx++;
+    		} else
+    			prev = min(prev+1, (ll)INT_MAX);
+    		L[i] = prev;
+    	}
+
+    	vl R(n);
+    	prev = INT_MAX, idx = k-1;
+    	for (int i = n-1; i >= 0; i--) {
+    		if (idx >= 0 && t[idx].first == i+1) {
+    			prev = min(prev+1, t[idx].second);
+    			idx--;
+    		} else
+    			prev = min(prev+1, (ll)INT_MAX);
+    		R[i] = min(L[i], prev);
+    	}
+
+    	cout << R << nL;
+    }
 
 	return 0;
 }

@@ -59,7 +59,25 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int s;
+    	cin >> s;
+
+    	int res = 0;
+    	int curr = 0;
+    	int next = 1;
+    	while (curr + next <= s) {
+    		curr+=next;
+    		next+=2;
+    		res++;
+    	}
+    	if (curr == s)
+    		cout << res << nL;
+    	else
+    		cout << res+1 << nL;
+    }
 
 	return 0;
 }

@@ -59,7 +59,28 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int n, q;
+    cin >> n >> q;
+    string s;
+    vi sum(n);
+    for (int i = 0; i < n; i++) {
+    	char c;
+    	cin >> c;
+    	if (i == 0) {
+    		sum[i] = c-96;
+    	} else {
+    		sum[i] = c-96+sum[i-1];
+    	}
+    }
+
+    while (q--) {
+    	int l, r;
+    	cin >> l >> r;
+
+    	ll cnt = sum[r-1]-(l-2>=0? sum[l-2] : 0);
+
+    	cout << cnt << nL;
+    }
 
 	return 0;
 }

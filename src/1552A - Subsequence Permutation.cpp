@@ -59,7 +59,24 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	string s;
+    	cin >> s;
+
+    	string tmp = s;
+    	sort(all(tmp));
+
+    	int cnt = 0;
+    	for (int i = 0; i < n; i++) {
+    		if (tmp[i] != s[i]) cnt++;
+    	}
+
+    	cout << cnt << nL;
+    }
 
 	return 0;
 }

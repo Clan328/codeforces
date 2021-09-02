@@ -59,7 +59,14 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll p;
+    	cin >> p;
+
+    	cout << (p-1)/2 << " " << p-1 << nL;
+    }
 
 	return 0;
 }

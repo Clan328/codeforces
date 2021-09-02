@@ -59,7 +59,34 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int n, m;
+    cin >> n >> m;
+    int idx = INT_MAX;
+    vi c(n);
+    for (int i = 0; i < n; i++) {
+    	cin >> c[i];
+    	idx = min(idx, c[i]);
+    }
+    map<int, set<int>> G;
+    while (m--) {
+    	int a, b;
+    	cin >> a >> b;
+    	a--; b--;
+    	if (c[a] != c[b]) {
+	    	G[c[a]].insert(c[b]);
+	    	G[c[b]].insert(c[a]);
+	    }
+    }
+
+    unsigned long maxN = 0;
+    for (auto const& [key, val] : G) {
+    	if (maxN < val.size()) {
+    		maxN = val.size();
+    		idx = key;
+    	}
+    }
+
+    cout << idx << nL;
 
 	return 0;
 }

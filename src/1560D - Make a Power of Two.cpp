@@ -8,7 +8,7 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 
-typedef long long ll;
+typedef unsigned long long ll;
 typedef long double ld;
 typedef vector<int> vi;
 typedef vector<vi> vvi;
@@ -59,7 +59,31 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll n;
+    	cin >> n;
+
+    	string s = to_string(n);
+
+    	ll res = LLONG_MAX;
+    	for (int i = 0; i < 64; i++) {
+    		ll idx = 0;
+    		string x = to_string((1ULL << i));
+    		ll cnt = s.size()+x.size();
+
+    		for (int i = 0; i < s.size() && idx < x.size(); i++) {
+    			if (s[i] == x[idx]) {
+    				cnt-=2;
+    				idx++;
+    			}
+    		}
+    		res = min(res, cnt);
+    	}
+
+    	cout << res << nL;
+    }
 
 	return 0;
 }

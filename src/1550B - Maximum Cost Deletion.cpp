@@ -59,7 +59,48 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n, a, b;
+    	cin >> n >> a >> b;
+    	int nOnes = 0;
+    	string s = "";
+    	for (int i = 0; i< n; i++) {
+    		char c;
+    		cin >> c;
+    		nOnes += (c == '1');
+    		s += c;
+    	}
+
+    	if (b >= 0) {
+    		cout << a*n+b*n << nL;
+    	} else {
+    		int zeros = nOnes*a+b, ones = (n-nOnes)*a+b;
+    		int cnt = 0;
+    		for (int i = 0; i < n; i++) {
+    			if (s[i] == '0')
+    				cnt++;
+
+    			if (cnt > 0 && (i == n-1 || s[i+1] == '1')) {
+    				zeros += cnt*a+b;
+    				cnt = 0;
+    			}
+    		}
+
+    		cnt = 0;
+    		for (int i = 0; i < n; i++) {
+    			if (s[i] == '1')
+    				cnt++;
+
+    			if (cnt > 0 && (i == n-1 || s[i+1] == '0')) {
+    				ones += cnt*a+b;
+    				cnt = 0;
+    			}
+    		}
+    		cout << max(zeros, ones) << nL;
+    	}
+    }
 
 	return 0;
 }

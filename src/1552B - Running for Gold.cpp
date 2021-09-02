@@ -59,7 +59,44 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vvi r(n, vi(5));
+    	for (int i = 0; i < n; i++) {
+    		cin >> r[i];
+    	}
+
+    	vi a(n);
+    	iota(all(a), 1);
+    	
+    	sort(all(a), [&](int x, int y) {
+    		int cntX = 0;
+    		for (int i = 0; i < 5; i++) {
+    			cntX += (r[x-1][i] < r[y-1][i]);
+    		}
+    		
+    		return cntX >= 3;
+    	});
+
+    	bool isPos = true;
+    	int res = a[0];
+    	for (int i = 1; i < n && isPos; i++) {
+    		int cntX = 0;
+    		for (int j = 0; j < 5; j++) {
+    			cntX += (r[a[0]-1][j] < r[a[i]-1][j]);
+    		}
+
+    		isPos = (cntX >= 3);
+    	}
+
+    	if (isPos)
+    		cout << res << nL;
+    	else
+    		cout << -1 << nL;
+    }
 
 	return 0;
 }

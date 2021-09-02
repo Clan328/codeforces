@@ -58,8 +58,60 @@ void settings() {
     cin.tie(0);
 }
 
+vi p1, p2;
+
+int findSet(vi& p, int i) {
+    if(p[i] != i) p[i] = findSet(p, p[i]);
+    return p[i];
+}
+
+void unionSet(vi& p, int u, int v) {
+    p[findSet(p, u)] = findSet(p, v);
+}
+
 int main() {
-    /* code */
+    int n, m1, m2;
+    cin >> n >> m1 >> m2;
+
+    p1 = vi(n), p2 = vi(n);
+    vpii res;
+    iota(all(p1), 0);
+    iota(all(p2), 0);
+    while (m1--) {
+    	int u, v;
+    	cin >> u >> v;
+    	u--; v--;
+    	unionSet(p1, u, v);
+    }
+
+    while (m2--) {
+    	int u, v;
+    	cin >> u >> v;
+    	u--; v--;
+    	unionSet(p2, u, v);
+    }
+
+    for (int i = 0; i < n; i++) {
+    	for (int j = 0; j < n; j++) {
+    		if (i == j) continue;
+    		if (findSet(p1, i) != findSet(p1, j) && findSet(p2, i) != findSet(p2, j)) {
+    			res.pb({i, j});
+    			unionSet(p1, i, j);
+    			unionSet(p2, i, j);
+    		}
+    	}
+    }
+
+    cout << res.size() << nL;
+    for (int i = 0; i < res.size(); i++)
+    	cout << res[i].first+1 << " " << res[i].second+1 << nL;
+
+   	// for (int i = 0; i < n; i++)
+   	// 	cout << findSet(p1, i) << " ";
+   	// cout << nL;
+   	// for (int i = 0; i < n; i++)
+   	// 	cout << findSet(p2, i) << " ";
+   	// cout << nL;
 
 	return 0;
 }

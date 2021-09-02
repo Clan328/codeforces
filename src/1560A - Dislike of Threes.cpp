@@ -59,7 +59,20 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int k;
+    	cin >> k;
+    	int cnt = 0, i = 0;
+    	while (cnt < k) {
+    		i++;
+    		if (i % 10 != 3 && i % 3 != 0)
+    			cnt++;
+    	}
+
+    	cout << i << nL;
+    }
 
 	return 0;
 }

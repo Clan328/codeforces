@@ -49,7 +49,7 @@ istream& operator>>(istream& stream, vector<T>& v){
 }
 
 void settings() {
-	#ifdef LOCAL
+	#ifndef ONLINE_JUDGE
 		freopen("io/input.txt", "r", stdin);
 		freopen("io/output.txt", "w", stdout);
 	#endif
@@ -59,7 +59,32 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    ll n, d;
+    cin >> n >> d;
+    vl x(n);
+    cin >> x;
+
+    sort(all(x));
+
+    ll total = 0;
+    for (int i = 0; i < n; i++) {
+    	ll curr = 1;
+    	ll lo = i+1, hi = n-1, res = -1, mid;
+    	while (lo <= hi) {
+    		mid = (lo+hi)/2;
+    		if (abs(x[i]-x[mid]) <= d) {
+    			res = mid;
+    			lo = mid + 1;
+    		} else
+    			hi = mid - 1;
+    	}
+    	if (res != -1) {
+    		res -= i;
+    		total += res*(res-1)/2;
+    	}
+    }
+
+    cout << total << nL;
 
 	return 0;
 }

@@ -59,7 +59,24 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	
+    	map<int, int> a;
+    	ll res = 0;
+    	for (int i = 1; i <= n; i++) {
+    		int in;
+    		cin >> in;
+    		in -= i;
+    		res += a[in];
+    		a[in]++;
+    	}
+
+    	cout << res << nL;
+    }
 
 	return 0;
 }

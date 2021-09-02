@@ -59,7 +59,16 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    string res = "";
+    char c;
+    while (cin >> c) {
+    	if (c == res[0] || res == "")
+    		res.pb(c);
+    	else if (c > res[0])
+    		res = c;
+    }
+
+    cout << res << nL;
 
 	return 0;
 }

@@ -59,7 +59,43 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    ll a, b;
+    cin >> a >> b;
+    int n;
+    cin >> n;
+
+    if (a > b) swap(a, b);
+
+    vl divisors;
+    for (int i = 1; i <= sqrt(a); i++) {
+    	if (a % i == 0) {
+    		if (b % i == 0)
+    			divisors.pb(i);
+    		if (b % (a/i) == 0 && i != a/i)
+    			divisors.pb(a/i);
+    	}
+    }
+
+    sort(all(divisors));
+    
+    while (n--) {
+    	ll low, high;
+    	cin >> low >> high;
+
+    	ll lo = 0, hi = divisors.size()-1, mid, res = -1;
+    	while (lo <= hi) {
+    		mid = (lo+hi)/2;
+    		if (divisors[mid] >= low && divisors[mid] <= high) {
+    			res = divisors[mid];
+    			lo = mid + 1;
+    		} else if (divisors[mid] > high)
+    			hi = mid - 1;
+    		else
+    			lo = mid + 1;
+    	}
+
+		cout << res << nL;
+    }
 
 	return 0;
 }

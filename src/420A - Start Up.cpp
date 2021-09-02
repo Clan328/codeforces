@@ -49,7 +49,7 @@ istream& operator>>(istream& stream, vector<T>& v){
 }
 
 void settings() {
-	#ifdef LOCAL
+	#ifndef ONLINE_JUDGE
 		freopen("io/input.txt", "r", stdin);
 		freopen("io/output.txt", "w", stdout);
 	#endif
@@ -59,7 +59,22 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    string s;
+    cin >> s;
+
+    bool words[26] = {1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0};
+
+    for (char c : s) {
+    	if (!words[(int)c-65]) {
+    		cout << "NO" << nL;
+    		return 0;
+    	}
+    }
+
+    string original = s;
+    reverse(all(s));
+
+    EVAL(s == original);
 
 	return 0;
 }

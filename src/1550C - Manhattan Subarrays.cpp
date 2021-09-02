@@ -59,7 +59,45 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	vl a(n);
+    	cin >> a;
+
+    	ll res = 2*n-1;
+
+    	if (n > 2) {
+	    	for (int i = 0; i < n; i++) {
+	    		bool good = true;
+	    		for (int j = i+1; j < n && j <= i+2; j++) {
+	    			for (int k = j+1; k < n && k <= i+3; k++) {
+	    				ll pr = abs(a[i]-a[j])+abs(j-i);
+		    			ll pq = abs(a[i]-a[k])+abs(k-i);
+		    			ll qr = abs(a[j]-a[k])+abs(k-j);
+
+		    			//cout << i+1 << ", " << j+1 << ", " << k+1 << ": " << pr << ", " << pq << ", " << qr << ": ";
+
+		    			good = good && ((pr!=pq+qr) && (pq != pr+qr) && (qr != pq+pr));
+		    			if (i == j-1 && j == k-1) {
+		    				res += good;
+		    			}
+		    			//cout << ((pr!=pq+qr) && (pq != pr+qr) && (qr != pq+pr)) << nL;
+	    			}
+	    		}
+	    		if (i+3 < n) {
+	    			ll pr = abs(a[i+1]-a[i+2])+abs(1);
+		    		ll pq = abs(a[i+1]-a[i+3])+abs(2);
+		    		ll qr = abs(a[i+2]-a[i+3])+abs(1);
+	    			res += good && ((pr!=pq+qr) && (pq != pr+qr) && (qr != pq+pr));
+	    		}
+	    	}
+	    }
+
+    	cout << res << nL;
+    }
 
 	return 0;
 }

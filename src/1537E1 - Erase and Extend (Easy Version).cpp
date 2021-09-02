@@ -59,7 +59,26 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int n, k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
+
+    string res = "";
+    for (int i = 0; i < n; i++) {
+    	int idx = 0;
+    	string temp = "";
+    	for (int j = 0; j < k; j++) {
+    		temp += s[idx];
+    		idx = (idx+1)%(i+1);
+    	}
+    	if (res == "")
+    		res = temp;
+    	else
+    		res = min(res, temp);
+    }
+
+    cout << res << nL;
 
 	return 0;
 }

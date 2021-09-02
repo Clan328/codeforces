@@ -59,7 +59,28 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int n;
+    cin >> n;
+    vl sums(n);
+    ll sum = 0;
+    for (int i = 0; i < n; i++) {
+    	int ai;
+    	cin >> ai;
+    	sum += ai;
+    	sums[i] = i==0 ? ai : sums[i-1]+ai;
+    }
+
+    int lo = 0, hi = n-1, res = n, mid;
+    while (lo <= hi) {
+    	mid = (lo+hi)/2;
+    	if (sums[mid] >= (double)sum/2) {
+    		res = mid;
+    		hi = mid - 1;
+    	} else
+    		lo = mid + 1;
+    }
+
+    cout << res+1 << nL;
 
 	return 0;
 }

@@ -59,7 +59,41 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+
+    	if (n == 2) {
+    		cout << -1 << nL;
+    		continue;
+    	}
+
+    	vvi mat(n, vi(n));
+    	int cells = ipow(n, 2);
+    	int num = 1;
+    	for (int i = 1; i <= n; i++) {
+    		for (int j = 1; j <= n; j++) {
+    			if ((i+j)%2 == 0) {
+    				mat[i-1][j-1] = num;
+    				num++;
+    			}
+    		}
+    	}
+
+    	for (int i = 1; i <= n; i++) {
+    		for (int j = 1; j <= n; j++) {
+    			if ((i+j)%2 != 0) {
+    				mat[i-1][j-1] = num;
+    				num++;
+    			}
+    		}
+    	}
+
+    	for (int i = 0; i < n; i++)
+    		cout << mat[i] << nL;
+    }
 
 	return 0;
 }

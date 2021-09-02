@@ -59,7 +59,27 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll x;
+    	cin >> x;
+
+    	bool res = x%11 == 0 || x%111 == 0 || x > 1099;
+
+    	if (!res) {
+    		for (int i = 0; i < 100; i++) {
+	    		for (int j = 0; j < 100 && 11*i+111*j<=1099; j++) {
+	    			if (11*i+111*j==x) {
+	    				res = true;
+	    				break;
+	    			}
+	    		}
+	    	}
+    	}
+
+    	EVAL(res);
+    }
 
 	return 0;
 }

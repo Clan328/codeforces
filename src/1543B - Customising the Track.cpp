@@ -59,7 +59,21 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	int n;
+    	cin >> n;
+    	ll sum = 0;
+    	for (int i = 0; i < n; i++) {
+    		ll a;
+    		cin >> a;
+    		sum += a;
+    	}
+
+    	ll diff = sum % n;
+    	cout << (n-diff)*diff << nL;
+    }
 
 	return 0;
 }

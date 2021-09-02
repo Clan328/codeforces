@@ -59,7 +59,21 @@ void settings() {
 }
 
 int main() {
-    /* code */
+    int t;
+    cin >> t;
+    while (t--) {
+    	ll k;
+    	cin >> k;
+
+    	ll c = (2+sqrt(4-4*(2-k)))/2;
+    	ll tmp = c*c-2*c+2;
+
+    	if (k <= tmp+c-1) {
+    		cout << c-(tmp-1+c-k) << " " << c << nL;
+    	} else {
+    		cout << c << " " << c-(k-tmp-c+1) << nL;
+    	}
+    }
 
 	return 0;
 }
